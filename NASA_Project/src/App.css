@@ -54,14 +54,14 @@ body {
   text-align: center;
   color: white;
 }
-footer {
+footer,header {
   background: black;
   color: white;
   padding: 3em;
   border-radius: 1em;
   text-align: start;
 }
-footer a {
+footer,header a {
   color: white;
   font-size: 1.5em;
   margin: 1em;

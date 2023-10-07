@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 
-const Middle = () => {
+const Hero = () => {
 
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
@@ -214,4 +214,4 @@ animation();
   );
 };
 
-export default Middle;
+export default Hero;
