@@ -186,7 +186,8 @@ animation();
           left: "50%",
           transform: "translate(-50%, -50%)",
           color: "white",
-          fontSize: "5em"
+          fontSize: "5em",
+          fontfamily: "monospace, sans-serif"
         }}
       >
        <p> So, You want to travel to Space 🌌</p>

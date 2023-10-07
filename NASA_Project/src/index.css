@@ -12,7 +12,7 @@ body {
   color: white;
 }
 footer {
-  
+  font-family: monospace, sans-serif;
   background: black;
   color: white;
   padding: 3em;
