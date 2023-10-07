@@ -246,7 +246,12 @@ const Hero = () => {
 						gap: "1rem",
 					}}
 				>
-					<button className="startpage">Explore</button>
+					<Link
+						to="https://exploreplanets.netlify.app/"
+						target="_blank"
+					>
+						<button className="startpage">Explore</button>
+					</Link>
 					<Link to="/destination">
 						<button className="startpage">
 							Choose Your Adventure
