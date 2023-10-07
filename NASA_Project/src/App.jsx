@@ -1,11 +1,14 @@
-
+import Footer from './components/Footer';
+import Header from './components/Header'
+import  Middle  from './components/Middle'
+import './App.css'
 function App() {
 
 
-  return (
-      <div className="w-screen h-screen bg-red-300">
-
-
+  return (  <div className="App">
+     <Footer/>
+      <Middle/>
+      <Header/>
       </div>
   )
 }
