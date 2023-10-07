@@ -44,7 +44,7 @@
 
 body {
  
-    cursor: none;
+    
   
   
   background: #1f1f1f;
@@ -69,7 +69,8 @@ footer,header a {
 }
 
 button.startpage {
-  cursor: none;
+  margin-top: 2rem;
+  text-align: center;
   position: relative;
   padding: 20px 40px; /* Increase padding */
   border-radius: 7px;
@@ -154,7 +155,7 @@ button.startpage:active {
   overflow: hidden;
 }
 
-.cursor {
+/* .cursor {
   position: fixed;
   width: 40px;
   height: 40px;
@@ -169,4 +170,4 @@ text:hover ~ .cursor {
   transform: scale(6);
   box-shadow: 0 0 10px #fff;
   color: #000;
-}
+} */

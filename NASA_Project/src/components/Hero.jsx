@@ -204,7 +204,7 @@ animation();
 
 
         <div>
-          <p style={{fontSize: "0.25em", textAlign: "left", color: "#22c1c3"}} onMouseOver={e => e.currentTarget.style.color = '#50fa7b'} onMouseOut={e => e.currentTarget.style.color = '#22c1c3'}>{text}</p>
+          <p style={{fontSize: "0.25em", textAlign: "left", color: "#22c1c3", marginTop:"1rem", }} onMouseOver={e => e.currentTarget.style.color = '#50fa7b'} onMouseOut={e => e.currentTarget.style.color = '#22c1c3'}>{text}</p>
         </div>
         <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
           <button class="startpage">Explore</button>
