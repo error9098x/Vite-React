@@ -1,8 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Layout from "./Layout";
+import "./App.css";
+import DestinationPage from "./DestinationPage";
 import HomePage from "./HomePage";
-import './App.css';
+import Layout from "./Layout";
 function App() {
 	return (
 		<Routes>
@@ -13,6 +14,10 @@ function App() {
 				<Route
 					index
 					element={<HomePage />}
+				/>
+				<Route
+					path="/destination"
+					element={<DestinationPage />}
 				/>
 			</Route>
 		</Routes>
