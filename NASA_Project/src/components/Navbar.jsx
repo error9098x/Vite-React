@@ -19,7 +19,7 @@ const Navbar = () => {
 					<FaHome />
 				</a>
 				<a
-					href="/image-of-the-day"
+					href="/nasainfo"
 					target="_blank"
 					rel="noopener noreferrer"
 					className="icon"

@@ -4,6 +4,7 @@ import "./App.css";
 import DestinationPage from "./DestinationPage";
 import HomePage from "./HomePage";
 import Layout from "./Layout";
+import NasaInfo from "./components/NasaInfo";
 function App() {
 	return (
 		<Routes>
@@ -18,6 +19,10 @@ function App() {
 				<Route
 					path="/destination"
 					element={<DestinationPage />}
+				/>
+				<Route
+					path="/nasainfo"
+					element={<NasaInfo />}
 				/>
 			</Route>
 		</Routes>
