@@ -32,7 +32,7 @@ const Navbar = () => {
 					<FaImage />
 				</a>
 				<a
-					href="/explore"
+					href="https://exploreplanets.netlify.app/"
 					target="_blank"
 					rel="noopener noreferrer"
 					className="icon"
@@ -44,19 +44,7 @@ const Navbar = () => {
 				>
 					<FaCompass />
 				</a>
-				<a
-					href="/about"
-					target="_blank"
-					rel="noopener noreferrer"
-					className="icon"
-					style={{ color: "white" }}
-					onMouseOver={(e) =>
-						(e.currentTarget.style.color = "#1389fd")
-					}
-					onMouseOut={(e) => (e.currentTarget.style.color = "white")}
-				>
-					<FaInfoCircle />
-				</a>
+				
 			</div>
 		</header>
 	);

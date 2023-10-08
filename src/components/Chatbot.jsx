@@ -106,7 +106,7 @@ document.getElementById('inputForm').addEventListener('submit', async (event) =>
       left: '0', 
       width: '300px', 
       height: '200px', 
-      marginLeft: '800px',
+      marginLeft: '1000px',
       background: 'linear-gradient(0deg, rgba(34,60,195,1) 9%, rgba(45,229,253,1) 100%)',
       border: '2px solid #000000',
       borderRadius: '15px',

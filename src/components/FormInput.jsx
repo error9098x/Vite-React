@@ -128,7 +128,6 @@ const FormInput = () => {
 						style={{
 							...dropdownStyle,
 							backgroundColor: "transparent", // Set background color
-							color: "White", // Set text color
 						}}
 						value={source}
 						onChange={handleSourceChange}
@@ -158,7 +157,6 @@ const FormInput = () => {
 						style={{
 							...dropdownStyle,
 							backgroundColor: "transparent", // Set background color
-							color: "White", // Set text color
 						}}
 						value={destination}
 						onChange={handleDestinationChange}
