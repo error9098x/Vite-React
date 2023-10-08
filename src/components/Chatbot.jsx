@@ -9,7 +9,7 @@ const ChatBot = () => {
           'Content-Type': 'application/json',
       };
 
-      let chatStr = 'Sir: hi \\nPluto: Hello, I am Pluto,the nasa chatbot \\nSir: You are nasa chatbot which strictly only knows about Nasa,Space and satellites.Other than you will always say "I am pluto and i only know about Space.You will answer strictly in less than 50 words not more than that." \\nPluto: Ok i am pluto, nasa robot and i only know about Space.I will answer you in less than 50 words not more than that.';
+      let chatStr = 'Sir: hi \\nPluto: Hello, I am Pluto,the nasa chatbot \\nSir: You are nasa chatbot which strictly only knows about Nasa, Space, planets ,planetary travel and satellites.Other than you will always say "I am pluto and i only know about Space.You will answer strictly in less than 50 words not more than that." \\nPluto: Ok i am pluto, nasa robot and i only know about Space.I will answer you in less than 50 words not more than that.';
 
       const synth = window.speechSynthesis;
       const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
@@ -19,53 +19,81 @@ const ChatBot = () => {
 
       const startButton = document.getElementById('startButton');
 
-      startButton.addEventListener('click', () => {
-          recognition.start();
-          startButton.classList.add('listening');
+      // Define a timer to stop listening after 3 seconds
+var timer;
+
+// Start listening when the mic image is clicked
+startButton.addEventListener('click', () => {
+    recognition.start();
+    startButton.classList.add('listening');
+    timer = setTimeout(function() {
+        recognition.stop();
+        startButton.classList.remove('listening');
+    }, 8000); // Stop after 3 seconds
+});
+
+// Handle the results of the recognition
+recognition.addEventListener('result', (event) => {
+    const speechResult = event.results[0][0].transcript;
+    document.getElementById('inputField').value = speechResult;
+    document.getElementById('inputForm').dispatchEvent(new Event('submit'));
+    clearTimeout(timer); // Clear the timer when a result is obtained
+    startButton.classList.remove('listening');
+});
+
+// Stop the timer if the recognition ends before 3 seconds
+recognition.addEventListener('end', () => {
+    clearTimeout(timer);
+    startButton.classList.remove('listening');
+});
+
+document.getElementById('inputForm').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const inputField = document.getElementById('inputField');
+  const prompt = inputField.value;
+  inputField.value = '';
+
+  // Check if the input field is empty
+  if (prompt.trim() === '') {
+      console.log('Input field is empty. Not sending request.');
+      return;
+  }
+
+  chatStr += \`Sir: \${prompt}\\nPluto: \`;
+
+  const data = {
+      "prompt": {
+          "text": chatStr
+      }
+  };
+
+  try {
+      const response = await fetch(url, {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify(data)
       });
 
-      recognition.addEventListener('result', (event) => {
-          const speechResult = event.results[0][0].transcript;
-          document.getElementById('inputField').value = speechResult;
-          document.getElementById('inputForm').dispatchEvent(new Event('submit'));
-          startButton.classList.remove('listening');
-      });
+      if (!response.ok) {
+          throw new Error(\`HTTP error! status: \${response.status}\`);
+      }
 
-      document.getElementById('inputForm').addEventListener('submit', async (event) => {
-          event.preventDefault();
-          const inputField = document.getElementById('inputField');
-          const prompt = inputField.value;
-          inputField.value = '';
+      const responseJson = await response.json();
+      const output = responseJson['candidates'][0]['output'];
 
-          chatStr += \`Sir: \${prompt}\\nPluto: \`;
+      chatStr += \`\${output}\\n\`;
+      // Display only the latest user and assistant messages in the chatbox
+      document.getElementById('chatbox').innerHTML = \`<p>User: \${prompt}</p><p>Assistant: \${output}</p>\`;
 
-          const data = {
-              "prompt": {
-                  "text": chatStr
-              }
-          };
+  // Speak out the assistant's response
+  var utterance = new SpeechSynthesisUtterance(output);
+  synth.speak(utterance);
+} catch (error) {
+  console.error(error);
+}
+});
 
-          try {
-              const response = await fetch(url, {
-                  method: 'POST',
-                  headers: headers,
-                  body: JSON.stringify(data)
-              });
 
-              if (!response.ok) {
-                  throw new Error(\`HTTP error! status: \${response.status}\`);
-              }
-
-              const responseJson = await response.json();
-              const output = responseJson['candidates'][0]['output'];
-
-              chatStr += \`\${output}\\n\`;
-              // Display only the latest user and assistant messages in the chatbox
-              document.getElementById('chatbox').innerHTML = \`<p>User: \${prompt}</p><p>Assistant: \${output}</p>\`;
-          } catch (error) {
-              console.error(error);
-          }
-      });
     `;
     document.body.appendChild(script);
   }, []);
@@ -110,6 +138,7 @@ const ChatBot = () => {
             type="text" 
             id="inputField" 
             placeholder="Type your message..." 
+
             style={{ 
               flex: 1, 
               borderRadius: '15px',
