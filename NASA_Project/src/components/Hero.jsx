@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ChatBot from "./Chatbot";
+import Modal from 'react-modal';
+Modal.setAppElement('#root');
+
 
 const Hero = () => {
 	const [text, setText] = useState("");
 	const [index, setIndex] = useState(0);
 	const fullTexts = [
 		"Climb Olympus Mons (21 km high - tallest mountain in the solar system!) Enjoy breathtaking views from the peak.",
-
 		"Explore Valles Marineris (4,000 km long - longest canyon in the solar system!) Go spelunking in its intricate cave systems.",
-
 		"See the ice caps and dune fields of the northern polar region. Experience Martian winters.",
-
 		"Visit ancient riverbeds and lakebeds. Look for signs of past life.",
-
 		"Check out the southern hemisphere and spots where rovers have landed like Gale Crater.",
-
 		"Take a balloon ride in the upper clouds and see Venusian lightning storms up close.",
 
 		"Explore Maxwell Montes, the highest mountain on Venus at 11 km. Withstand the extreme pressures.",
@@ -239,6 +238,7 @@ const Hero = () => {
 						{text}
 					</p>
 				</div>
+				<ChatBot />
 				<div
 					style={{
 						display: "flex",
@@ -257,6 +257,7 @@ const Hero = () => {
 							Choose Your Adventure
 						</button>
 					</Link>
+					
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,28 @@
 import React, { useState } from "react";
 import "./css/FormInput.css";
 
+const submitForm = (e) => {
+    e.preventDefault(); // Prevent the form from refreshing the page
+
+    const data = {
+        name: name,
+        source: source,
+        destination: destination
+    };
+
+    fetch('https://5c2lhs-5000.csb.app/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch((error) => console.error('Error:', error));
+};
+
+
 const FormInput = () => {
 	const dropdownStyle = {
 		width: "100%",
@@ -51,10 +73,40 @@ const FormInput = () => {
 			setErrorMessage("");
 		}
 	};
-
+	const submitForm = (e) => {
+		e.preventDefault(); // Prevent the form from refreshing the page
+	
+		const data = {
+			name: name,
+			source: source,
+			destination: destination
+		};
+	
+		fetch('https://5c2lhs-5000.csb.app', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		})
+		.then(response => response.blob())
+		.then(blob => {
+			const url = window.URL.createObjectURL(blob);
+			const a = document.createElement('a');
+			a.style.display = 'none';
+			a.href = url;
+			let s = name;
+			a.download = s + " Itinerary.pdf"; // the filename you want
+			document.body.appendChild(a);
+			a.click();
+			window.URL.revokeObjectURL(url);
+		})
+		.catch((error) => console.error('Error:', error));
+	};
+	
 	return (
 		<div className="container">
-			<form className="form">
+			<form className="form" onSubmit={submitForm}>
 				<div className="form-title">
 					<span>Wonder into the</span>
 				</div>
